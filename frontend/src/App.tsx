@@ -3,6 +3,7 @@ import { source } from "./source";
 import calSalary from './utils/calSalary';
 import Table from './components/table';
 import Search from './components/search';
+import Chart from './components/chart';
 
 
 import './App.css';
@@ -56,6 +57,7 @@ function App() {
     <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
     <Table aggregate={filterList}></Table>
+    <Chart aggregate={filterList}/>
   </>
 
 }
