@@ -11,6 +11,7 @@ import './App.css';
 function App() {
   const [aggregate, setAggregate] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [filterList,setFilterList]=useState([]);
 
 
 
@@ -23,7 +24,7 @@ function App() {
 
         const agg = calSalary(data);
         setAggregate(agg);
-        console.log(agg);
+        setFilterList(agg);
 
       } catch (e) {
 
@@ -34,10 +35,27 @@ function App() {
   }, []);
 
 
+  useEffect(()=>{
+    const query=new RegExp(searchTerm,'i');
+    setFilterList(()=>{
+      const filteredCountry=aggregate.filter((country)=>{
+        const temp=country.name.match(query);
+        const {input}=temp===null?'':temp;
+        return country.name===input;
+      })
+     
+      return filteredCountry;
+    })
+
+
+
+  },[searchTerm])
+
+
   return <>
     <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
-    <Table aggregate={aggregate}></Table>
+    <Table aggregate={filterList}></Table>
   </>
 
 }
