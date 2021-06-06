@@ -1,12 +1,15 @@
 import {useState,useEffect} from 'react';
 import { source } from "./source";
 import calSalary from './utils/calSalary';
+import Table from './components/table';
+
 
 import './App.css';
 
 
 function App() {
   const [aggregate,setAggregate]=useState([]);
+
 
 
 
@@ -28,7 +31,8 @@ function App() {
    
   }, []);
 
-  return <> I am app
+  return <> 
+  <Table aggregate={aggregategi}></Table>
   </>
  
 }
