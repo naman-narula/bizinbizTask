@@ -1,0 +1,31 @@
+#searchBar{
+    background-color:#21094e;
+    display: flex;
+    justify-content: center;
+    height: 50px;
+    align-items: center;
+
+}
+#searchBar input{
+    background-color: #21094e;
+    
+    border: none;
+    outline: none;
+    caret-color: #a5e1ad;
+    color: #a5e1ad;
+    font-size: 1.2rem;
+   
+
+}
+#searchBar input:focus{
+    border-bottom: 2px solid #a6d6d6;
+}
+#searchBar i{
+    color: #a5e1ad;
+}
+::placeholder{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1rem;
+    color: #a6d6d6;
+
+}

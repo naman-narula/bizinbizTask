@@ -1,0 +1,17 @@
+.appLayout{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    color: white;
+}
+#headings{
+background-color: #4ca1a3;
+}
+#content{
+    background-color: #a5e1ad;
+    font-weight: 100;
+}
+#content h1{
+    font-weight: 100;
+    color: #325BAD;
+}
