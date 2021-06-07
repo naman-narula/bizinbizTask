@@ -4,15 +4,16 @@ import calSalary from './utils/calSalary';
 import Table from './components/table';
 import Search from './components/search';
 import Chart from './components/chart';
+import {useGlobalContext} from './context'
 
 
 import './App.css';
 
 
 function App() {
-  const [aggregate, setAggregate] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filterList,setFilterList]=useState([]);
+ 
+  
+  const {dispatch,state} =useGlobalContext();
 
 
 
@@ -22,44 +23,39 @@ function App() {
       try {
         const res = await fetch(source);
         const data = await res.json();
-
         const agg = calSalary(data);
-        setAggregate(agg);
-        setFilterList(agg);
+        dispatch({type:'FETCH',payload:agg});
 
-      } catch (e) {
-
-      }
+      } 
+      catch (e) {console.error(e)}
     }
     fetchData();
-
-  }, []);
+}, []);
 
 
   useEffect(()=>{
-    const query=new RegExp(searchTerm,'i');
-    setFilterList(()=>{
-      const filteredCountry=aggregate.filter((country)=>{
-        const temp=country.name.match(query);
-        const {input}=temp===null?'':temp;
-        return country.name===input;
-      })
-     
-      return filteredCountry;
-    })
+    
+    dispatch({type:'FILTER'});
 
+},[state.searchTerm])
 
+if(state.searchMode)
+{
+  return <><Search />
+  <Table/>
+  <Chart/>
+  </>
+}
+ else{
 
-  },[searchTerm])
+   return <>
+    <Search />
 
-
-  return <>
-    <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-
-    <Table aggregate={filterList}></Table>
-    <Chart aggregate={filterList}/>
+    {state.primaryView&&<Table></Table>}
+    {!state.primaryView&&<Chart/>}
   </>
 
+}
 }
 
 export default App;

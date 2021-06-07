@@ -29,3 +29,6 @@
     color: #a6d6d6;
 
 }
+#searchBar button{
+    justify-self: flex-end;
+}

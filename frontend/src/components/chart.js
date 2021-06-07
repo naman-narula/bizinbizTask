@@ -1,14 +1,16 @@
 import { Bar } from 'react-chartjs-2';
-export default function Chart({aggregate})
-{
+import { useGlobalContext } from '../context'
+export default function Chart()
+{ 
+  const {state:{filterList}}=useGlobalContext();
 
 
     const data = {
-        labels:aggregate.map(({name})=>name),
+        labels:filterList.map(({name})=>name),
         datasets: [
           {
             label: 'Avg Salary',
-            data: aggregate.map(({salary})=>salary),
+            data: filterList.map(({salary})=>salary),
             backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
               'rgba(54, 162, 235, 0.2)',
