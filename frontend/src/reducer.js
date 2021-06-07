@@ -7,27 +7,27 @@ export default function reducer(state, action) {
         }
         case 'SEARCH': {
             return {
-                ...state, searchTerm: action.payload,searchMode:true
+                ...state, searchTerm: action.payload, searchMode: true
             }
         }
         case 'FILTER': {
-            const query = new RegExp(state.searchTerm, 'i');
+            const query = new RegExp('^'+state.searchTerm, 'i');
             const filteredCountry = state.aggregate.filter((country) => {
                 const temp = country.name.match(query);
                 const { input } = temp === null ? '' : temp;
                 return country.name === input;
             });
             return {
-                ...state,filterList:[...filteredCountry]
+                ...state, filterList: [...filteredCountry]
             }
         }
         case 'TOGGLE-VIEW':
             {
                 return {
-                    ...state,primaryView:!state.primaryView,searchMode:false
+                    ...state, primaryView: !state.primaryView, searchMode: false
                 }
             }
-       
+
 
         default: throw Error('no matching action')
     }
