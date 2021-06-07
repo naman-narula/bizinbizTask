@@ -7,7 +7,7 @@ export default function reducer(state, action) {
         }
         case 'SEARCH': {
             return {
-                ...state, searchTerm: action.payload
+                ...state, searchTerm: action.payload,searchMode:true
             }
         }
         case 'FILTER': {
@@ -24,7 +24,7 @@ export default function reducer(state, action) {
         case 'TOGGLE-VIEW':
             {
                 return {
-                    ...state,primaryView:!state.primaryView
+                    ...state,primaryView:!state.primaryView,searchMode:false
                 }
             }
        
